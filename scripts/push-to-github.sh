@@ -16,11 +16,34 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-if [[ -z "${GITHUB_TOKEN:-}" && -f "$ROOT/.env.local" ]]; then
-  set -a
-  # shellcheck disable=SC1091
-  source "$ROOT/.env.local"
-  set +a
+# source yerine satir okuma: yorumlardaki ozel karakterler ve bos satirlar guvenli
+load_github_token_from_env_local() {
+  [[ -f "$ROOT/.env.local" ]] || return 0
+  local line key val
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+    [[ "$line" == GITHUB_TOKEN=* ]] || continue
+    val="${line#GITHUB_TOKEN=}"
+    val="${val%$'\r'}"
+    val="${val#"${val%%[![:space:]]*}"}"
+    val="${val%"${val##*[![:space:]]}"}"
+    val="${val#\"}"
+    val="${val%\"}"
+    val="${val#\'}"
+    val="${val%\'}"
+    [[ -n "$val" ]] && printf -v GITHUB_TOKEN '%s' "$val" && export GITHUB_TOKEN && break
+  done <"$ROOT/.env.local"
+  # set -e: while son iterasyonda [[ -n "$val" ]] basarisiz olunca dongu cikisi 1 olabiliyor
+  true
+}
+if [[ -z "${GITHUB_TOKEN:-}" ]]; then
+  load_github_token_from_env_local
+fi
+
+if [[ -z "${GITHUB_TOKEN:-}" ]]; then
+  echo "HATA: GITHUB_TOKEN bos. .env.local icinde 'GITHUB_TOKEN=ghp_...' satirini doldurup Cmd+S ile kaydedin." >&2
+  echo "Token: https://github.com/settings/tokens" >&2
+  exit 1
 fi
 
 REPO_URL="https://github.com/melikerge59-create/Laperla.git"
@@ -32,12 +55,7 @@ fi
 
 git branch -M main
 
-if [[ -n "${GITHUB_TOKEN:-}" ]]; then
-  # melikerge59-create hesabına ait PAT kullanın
-  git push -u "https://melikerge59-create:${GITHUB_TOKEN}@github.com/melikerge59-create/Laperla.git" main
-else
-  echo "GITHUB_TOKEN yok — normal kimlik doğrulama ile push deneniyor (şifre yerine PAT girin)."
-  git push -u origin main
-fi
+# melikerge59-create hesabina ait PAT
+git push -u "https://melikerge59-create:${GITHUB_TOKEN}@github.com/melikerge59-create/Laperla.git" main
 
 echo "Tamam: https://github.com/melikerge59-create/Laperla"
