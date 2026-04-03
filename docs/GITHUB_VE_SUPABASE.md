@@ -40,6 +40,8 @@ SSH kullanıyorsanız `git@github.com:KULLANICI/REPO.git` kullanın.
 
 ## 2) Supabase projesi
 
+**Ürün görselleri (Storage) adım adım:** `docs/SUPABASE_STORAGE.md`
+
 ### 2.1 Yeni proje
 
 [supabase.com/dashboard](https://supabase.com/dashboard) → **New project** → bölge ve güçlü veritabanı şifresi seçin.
@@ -69,7 +71,7 @@ npx supabase db push
 
 `<SUPABASE_PROJECT_REF>`: proje ayarlarında **Reference ID**.
 
-### 2.4 API anahtarları (Next.js / Vercel)
+### 2.4 API anahtarları (Next.js `.env`)
 
 **Settings → API:**
 
@@ -86,11 +88,9 @@ npx supabase db push
 
 ---
 
-## 3) Vercel (kısa)
+## 3) Vercel (isteğe bağlı — sonra)
 
-1. [vercel.com](https://vercel.com) → **Import** → GitHub repo.
-2. **Environment Variables**: `DATABASE_URL`, `DIRECT_URL`, `AUTH_SECRET`, `NEXT_PUBLIC_SITE_URL`, Google ID’ler, Supabase URL + service role, vb. (tam liste `.env.example`).
-3. Deploy; build komutu `vercel.json` ile `npm run build:vercel` (migrate deploy dahil).
+Canlı domain/hosting seçtiğinizde: repo import, env kopyala, deploy. Şimdilik atlanabilir.
 
 ---
 
@@ -101,4 +101,4 @@ npx supabase db push
 | Uygulama tabloları | Prisma `migrate deploy` |
 | Ürün görseli bucket | `supabase/migrations/...storage...sql` veya SQL Editor |
 | Kaynak kod | GitHub |
-| Canlı build | Vercel + env |
+| Canlı build | İleride Vercel veya başka host + env |
