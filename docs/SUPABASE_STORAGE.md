@@ -64,6 +64,8 @@ SUPABASE_SERVICE_ROLE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 
 ## 5) Doğrulama
 
+Önce terminalde (gizli değerleri yazdırmaz): `npm run check:supabase` — tüm satırlar **OK** olmalı.
+
 1. `npm run dev` → `/admin/giris` ile admin girişi.
 2. Ürün düzenle / yeni ürün → **görsel yükle**.
 3. Görsel URL’si `https://....supabase.co/storage/v1/object/public/product-images/...` biçiminde olmalı.
