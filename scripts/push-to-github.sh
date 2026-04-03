@@ -3,7 +3,7 @@
 #
 # Tek seferlik (önerilen): GitHub → Settings → Developer settings → Personal access tokens
 # https://github.com/settings/tokens
-# "repo" yetkili classic token oluşturun, sonra:
+# Classic PAT: "repo" + "workflow" (Actions dosyalari icin) — sonra:
 #
 #   export GITHUB_TOKEN=ghp_xxxxxxxx
 #   ./scripts/push-to-github.sh
