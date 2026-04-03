@@ -55,7 +55,9 @@ fi
 
 git branch -M main
 
-# melikerge59-create hesabina ait PAT
+# melikerge59-create hesabina ait PAT (push sonrasi upstream'te token kalmasin)
 git push -u "https://melikerge59-create:${GITHUB_TOKEN}@github.com/melikerge59-create/Laperla.git" main
+git remote set-url origin "$REPO_URL"
+git branch --set-upstream-to=origin/main main 2>/dev/null || true
 
 echo "Tamam: https://github.com/melikerge59-create/Laperla"
