@@ -1,3 +1,6 @@
+# Bu içeriği .github/workflows/ci.yml olarak geri koyun (PAT'ta "workflow" scope gerekir).
+# Veya GitHub → Actions → "set up a workflow yourself" ile yapıştırın.
+
 name: CI
 
 on:

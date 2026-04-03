@@ -32,9 +32,9 @@ git push -u origin main
 
 SSH kullanıyorsanız `git@github.com:KULLANICI/REPO.git` kullanın.
 
-### 1.4 CI
+### 1.4 CI (GitHub Actions)
 
-`.github/workflows/ci.yml` push ve pull request’te **Postgres + migrate + seed + build + lint + Playwright** çalıştırır. Repo GitHub’da olduktan sonra **Actions** sekmesinden durumu izleyebilirsiniz.
+Şablon: `docs/github-actions-ci.yml`. İlk push için **yalnızca `repo` yetkili** PAT kullanıldığında workflow dosyası repoda tutulmaz (GitHub `workflow` scope ister). Actions açmak için bu dosyayı `.github/workflows/ci.yml` olarak ekleyin veya PAT’a **`workflow`** ekleyip workflow’u commit’leyin. Sonra **Actions** sekmesinden izleyin.
 
 ---
 
