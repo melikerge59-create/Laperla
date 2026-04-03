@@ -8,11 +8,20 @@
 #   export GITHUB_TOKEN=ghp_xxxxxxxx
 #   ./scripts/push-to-github.sh
 #
-# Token'ı repoya veya .env'e kaydetmeyin; komut geçmişine düşebilir.
+# Token'ı sohbete yapıştırmayın. İsteğe bağlı: proje kökündeki .env.local içine
+#   GITHUB_TOKEN=ghp_...
+# (bu dosya .gitignore'da; repoya gitmez)
 
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
+
+if [[ -z "${GITHUB_TOKEN:-}" && -f "$ROOT/.env.local" ]]; then
+  set -a
+  # shellcheck disable=SC1091
+  source "$ROOT/.env.local"
+  set +a
+fi
 
 REPO_URL="https://github.com/melikerge59-create/Laperla.git"
 if ! git remote get-url origin &>/dev/null; then
