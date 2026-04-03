@@ -1,0 +1,2 @@
+-- Uygulama şeması Prisma ile yönetilir (prisma/migrations).
+-- Bu dosya yalnızca `supabase db reset` uyumluluğu içindir; ek tohum gerekmez.

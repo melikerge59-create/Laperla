@@ -1,0 +1,68 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Ortam dosyaları (.env.example repoda kalır)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# vercel
+.vercel
+
+# Supabase CLI geçici dosyalar
+supabase/.temp/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# local npm cache (sandbox / CI)
+.npm-cache
+
+/src/generated/prisma
+
+# Admin yüklenen ürün görselleri (örnek klasör .gitkeep ile kalır)
+/public/uploads/products/*
+!/public/uploads/products/.gitkeep
+
+# Eski yerel SQLite (PostgreSQL’e geçildi)
+prisma/dev.db
+prisma/dev.db-journal
+*.db
+*.db-journal

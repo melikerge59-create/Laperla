@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "../styles/la-perla-first.css";
+
+/* Klavye / ekran okuyucu: üst barın üzerinden doğrudan içeriğe geçiş */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10000;
+  padding: 12px 18px;
+  background: rgba(183, 142, 75, 0.98);
+  color: #fffaf8;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 0 0 12px 0;
+  box-shadow: 0 4px 14px rgba(122, 58, 58, 0.15);
+}
+.skip-to-content:focus {
+  left: 12px;
+  top: 12px;
+  outline: 2px solid rgba(122, 58, 58, 0.85);
+  outline-offset: 2px;
+}
+
+.thumb.lp-gallery-main[tabindex="0"]:focus-visible {
+  outline: 2px solid rgba(183, 142, 75, 0.95);
+  outline-offset: 4px;
+}
+
+/* Çerez bildirimi — sabit WhatsApp (z-index 260) üstte kalır */
+.cookie-consent-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 240;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: rgba(253, 245, 245, 0.98);
+  border-top: 1px solid rgba(196, 124, 124, 0.25);
+  box-shadow: 0 -8px 32px rgba(122, 58, 58, 0.08);
+}
+.cookie-consent-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Tailwind tema: hesap / iç sayfalar için (isteğe bağlı yardımcılar) */
+@theme inline {
+  --font-family-display: var(--font-display), ui-serif, Georgia, "Cormorant Garamond", serif;
+  --font-family-body: var(--font-body), system-ui, sans-serif;
+}

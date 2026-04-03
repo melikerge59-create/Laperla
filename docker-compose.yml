@@ -1,0 +1,16 @@
+# Yerel PostgreSQL (Prisma migrate / seed). Başlat: npm run db:up
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: laperla
+    volumes:
+      - laperla_pg:/var/lib/postgresql/data
+
+volumes:
+  laperla_pg:
